@@ -2,6 +2,8 @@ package com.example.stpl.firechat;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,17 +18,27 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     //private String TAG;
     private FirebaseAuth mAuth;
+    private ViewPager mViewPager;
+    private SectionsPagerAdapter sectionsPagerAdapter;
+    private TabLayout mTabLayout;
     // private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mAuth = FirebaseAuth.getInstance();
         mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Fire Chat");
+        //tabs
+        mViewPager=(ViewPager)findViewById(R.id.view_pager);
+        sectionsPagerAdapter=new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(sectionsPagerAdapter);
 
+        mTabLayout=(TabLayout)findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override

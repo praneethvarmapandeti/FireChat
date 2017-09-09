@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.stpl.firechat.SettingsActivity">
+
+<android.support.v4.widget.CircleImageView
+    android:layout_width="180dp"
+    android:layout_height="180dp"
+    android:src="@drawable/koala"
+    android:layout_marginTop="57dp"
+    app:civ_border_width="2dp"
+    app:civ_border_color="#FF000000"
+    android:id="@+id/circleImageView"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/display_name_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/circleImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:text="Display Name"
+        android:textSize="25sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/some_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="hi there i'm using Fire Chat App"
+        android:textColor="#fff"
+        android:textSize="18dp"
+        android:layout_below="@+id/display_name_txt"
+        android:layout_alignLeft="@+id/circleImageView"
+        android:layout_alignStart="@+id/circleImageView" />
+
+    <Button
+        android:id="@+id/change_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/img"
+        android:layout_alignBaseline="@+id/change_status"
+        android:layout_alignBottom="@+id/change_status"
+        android:layout_alignLeft="@+id/some_txt"
+        android:layout_alignStart="@+id/some_txt" />
+
+    <Button
+        android:id="@+id/change_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:layout_marginTop="47dp"
+        android:text="@string/change_status"
+        android:layout_below="@+id/some_txt"
+        android:layout_toRightOf="@+id/change_image"
+        android:layout_toEndOf="@+id/change_image"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
+
+
+</RelativeLayout>

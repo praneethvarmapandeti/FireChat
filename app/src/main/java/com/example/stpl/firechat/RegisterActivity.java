@@ -18,6 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout mDisplayName;
@@ -27,6 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     private Toolbar mToolbar;
     private ProgressDialog mRegProgress;
+    private DatabaseReference mDatabase;
+
 
 
     @Override
@@ -67,16 +74,40 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void register_user(String display_name, String email, String password) {
+    private void register_user(final String display_name, String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    mRegProgress.dismiss();
 
-                    Intent mainIntent=new Intent(RegisterActivity.this,MainActivity.class);
-                    startActivity(mainIntent);
-                    finish();
+                    FirebaseUser current_user=FirebaseAuth.getInstance().getCurrentUser();
+                    String uid=current_user.getUid();
+                    mDatabase=FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+                    HashMap<String,String> userMap=new HashMap<>();
+                    userMap.put("name",display_name);
+                    userMap.put("status","hithere,i'm using Fire chat App");
+                    userMap.put("image","default");
+                    userMap.put("thumb_image","default");
+
+                    mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            mRegProgress.dismiss();
+
+                            Intent mainIntent=new Intent(RegisterActivity.this,MainActivity.class);
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(mainIntent);
+                            finish();
+                        }
+                        }
+                    });
+
+
+
+
+
+
                 }
                 else{
                     mRegProgress.hide();
