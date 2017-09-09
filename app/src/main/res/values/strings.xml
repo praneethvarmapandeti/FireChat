@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Fire Chat</string>
+    <string name="need_a_new_account">new account</string>
+    <string name="email">email</string>
+    <string name="display_name">Display Name</string>
+    <string name="password">password</string>
+    <string name="logout">Logout</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="all_users">All Users</string>
+</resources>
