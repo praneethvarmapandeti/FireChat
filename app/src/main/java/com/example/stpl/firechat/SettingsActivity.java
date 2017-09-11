@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CircleImageView mDisplayImage;
     private TextView mName,mStatus;
     Button mChangeImage,mChangeStatus;
-
+    private static final int GALLERY_PICK=1;
 
 
 
