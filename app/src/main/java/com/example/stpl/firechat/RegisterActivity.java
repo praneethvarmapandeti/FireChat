@@ -89,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userMap.put("image","default");
                     userMap.put("thumb_image","default");
 
+
                     mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

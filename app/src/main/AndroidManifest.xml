@@ -3,6 +3,8 @@
     package="com.example.stpl.firechat">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -23,7 +25,14 @@
             android:name=".RegisterActivity"
             android:parentActivityName=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity"/>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".StatusActivity"></activity>
+
     </application>
 
 </manifest>
