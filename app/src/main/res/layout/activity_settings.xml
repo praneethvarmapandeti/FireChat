@@ -36,7 +36,7 @@
         android:layout_marginTop="36dp"
         android:text="hi there i'm using Fire Chat App"
         android:textColor="#fff"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:layout_below="@+id/settings_name"
         android:layout_alignLeft="@+id/settings_image"
         android:layout_alignStart="@+id/settings_image" />

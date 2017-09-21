@@ -16,4 +16,6 @@
     <string name="welcome_to_requests_page">Welcome to requests page</string>
     <string name="change_status">Change Status</string>
     <string name="img">change image</string>
+    <string name="image_blank">blaankrtr</string>
+
 </resources>
