@@ -17,5 +17,9 @@
     <string name="change_status">Change Status</string>
     <string name="img">change image</string>
     <string name="image_blank">blaankrtr</string>
+    <string name="accept_friend">Accept friend request</string>
+    <string name="cancel_friend">Cancel friend request</string>
+    <string name="unfriend_person">Unfriend this person</string>
+    <string name="send_frnd_req">Send friend request</string>
 
 </resources>

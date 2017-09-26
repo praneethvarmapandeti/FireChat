@@ -12,9 +12,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,33 +27,35 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
 
     private FirebaseAuth mAuth;
-
+    private DatabaseReference mUserDtabase;
     private ProgressDialog mLoginProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        mUserDtabase= FirebaseDatabase.getInstance().getReference().child("users");
 
 
-        mLoginProgress=new ProgressDialog(this);
-        mLoginEmail=(TextInputLayout)findViewById(R.id.login_email);
-        mLoginPassword=(TextInputLayout)findViewById(R.id.login_password);
-        mLoginBtn=(Button) findViewById(R.id.login_btn);
-        mLoginBtn.setOnClickListener(    new View.OnClickListener() {
+        mLoginProgress = new ProgressDialog(this);
+        mLoginEmail = (TextInputLayout) findViewById(R.id.login_email);
+        mLoginPassword = (TextInputLayout) findViewById(R.id.login_password);
+        mLoginBtn = (Button) findViewById(R.id.login_btn);
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=mLoginEmail.getEditText().getText().toString();
-                String password=mLoginPassword.getEditText().getText().toString();
-                if(!TextUtils.isEmpty(email)|| !TextUtils.isEmpty(password)){
+                String email = mLoginEmail.getEditText().getText().toString();
+                String password = mLoginPassword.getEditText().getText().toString();
+                if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
 
                     mLoginProgress.setTitle("Logging In");
                     mLoginProgress.setMessage("Please Wait While We Check Your Credentials");
                     mLoginProgress.setCanceledOnTouchOutside(false);
                     mLoginProgress.show();
 
-                    loginUser(email,password);
+                    loginUser(email, password);
                 }
             }
         });
@@ -59,18 +65,28 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     mLoginProgress.dismiss();
 
-                    Intent mainIntent=new Intent (LoginActivity.this,MainActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(mainIntent);
-                    finish();
-                }
+                    String current_user_id=mAuth.getCurrentUser().getUid();
+                    String deiveToken = FirebaseInstanceId.getInstance().getToken();
 
-                else{
+                    mUserDtabase.child(current_user_id).child("device_token").setValue(deiveToken).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(mainIntent);
+                            finish();
+                        }
+                    });
+
+
+
+                } else {
                     mLoginProgress.hide();
-                    Toast.makeText(LoginActivity.this,"Cannot Sign in,Please Check The FormAnd Try Again",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Cannot Sign in,Please Check The FormAnd Try Again", Toast.LENGTH_LONG).show();
                 }
 
             }

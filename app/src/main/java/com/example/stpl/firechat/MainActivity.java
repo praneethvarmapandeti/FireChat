@@ -13,6 +13,9 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
     private TabLayout mTabLayout;
+    private DatabaseReference mUserRef;
     // private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Fire Chat");
+
+        mUserRef= FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid());
+
         //tabs
         mViewPager=(ViewPager)findViewById(R.id.view_pager);
         sectionsPagerAdapter=new SectionsPagerAdapter(getSupportFragmentManager());
@@ -78,16 +85,34 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         //  mAuth.addAuthStateListener(mAuthListener);
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+
             sendToStart();
-            /*Intent start_intent = new Intent(MainActivity.this, StartActivity.class);
-            startActivity(start_intent);
-            finish();*/
-            // User is signed out
+        }
+        else {
+
+            mUserRef.child("online").setValue("true");
         }
 
     }
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser !=null) {
+
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
+
+        }
+
+
+    }
+
+
 
     private void sendToStart() {
             Intent start_intent = new Intent(MainActivity.this, StartActivity.class);
