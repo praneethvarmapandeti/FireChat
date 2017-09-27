@@ -1,0 +1,66 @@
+{
+  "project_info": {
+    "project_number": "414280206984",
+    "firebase_url": "https://firechat-25a5d.firebaseio.com",
+    "project_id": "firechat-25a5d",
+    "storage_bucket": "firechat-25a5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414280206984:android:e567b99b562b9a60",
+        "android_client_info": {
+          "package_name": "com.example.stpl.firechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414280206984-e6lo9lenl4fc786c950o3cfclahhebbm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stpl.firechat",
+            "certificate_hash": "4cf72ac3643cb79178752df02bbc6ec34a192d15"
+          }
+        },
+        {
+          "client_id": "414280206984-i7mlckapocddkg3v529ra5ql16hkui6l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stpl.firechat",
+            "certificate_hash": "35f4c52f8605b3fc3d045bca0632cd31fa6e4e52"
+          }
+        },
+        {
+          "client_id": "414280206984-pst0e3hqtn9qvm0aggfga4b4jio8uo8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQabhEKsq5mBflDB6HOQkPqMs_6RMpSQY"
+        },
+        {
+          "current_key": "AIzaSyAYlbs3a6D48VGlLNLnT3I3_P8yeGBTr_8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414280206984-pst0e3hqtn9qvm0aggfga4b4jio8uo8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

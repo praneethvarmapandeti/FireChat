@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.stpl.firechat.SettingsActivity">
+
+<de.hdodenhof.circleimageview.CircleImageView
+    android:layout_width="130dp"
+    android:layout_height="130dp"
+    android:src="@drawable/koala"
+    android:layout_marginTop="57dp"
+    app:civ_border_width="2dp"
+    app:civ_border_color="#FF000000"
+    android:id="@+id/settings_image"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/settings_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:text="Display Name"
+        android:textSize="25sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/settings_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="hi there i'm using Fire Chat App"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:layout_below="@+id/settings_name"
+        android:layout_alignLeft="@+id/settings_image"
+        android:layout_alignStart="@+id/settings_image" />
+
+    <Button
+        android:id="@+id/change_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/img"
+        android:layout_alignTop="@+id/change_status"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="67dp"
+        android:layout_marginStart="67dp" />
+
+    <Button
+        android:id="@+id/change_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:layout_marginTop="47dp"
+        android:text="@string/change_status"
+        android:layout_below="@+id/settings_status"
+        android:layout_toRightOf="@+id/change_image"
+        android:layout_toEndOf="@+id/change_image"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
+
+
+</RelativeLayout>
